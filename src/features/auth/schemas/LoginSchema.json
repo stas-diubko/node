@@ -1,0 +1,13 @@
+{
+    "title": "Login",
+    "properties": {
+        "email": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": true,
+    "required": ["email", "password"]
+}
