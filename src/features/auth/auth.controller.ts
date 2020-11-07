@@ -8,3 +8,11 @@ export const login = (req: Request, res: Response) => {
         .then((result) => res.status(result["status"]).send(result["message"]))
         .catch((err) => res.send(err));
 };
+
+export const register = (req: Request, res: Response) => {
+    const user = req.body;
+
+    services.register(user)
+        .then((result) => res.status(result["status"]).send(result["message"]))
+        .catch((err) => res.send(err));
+};

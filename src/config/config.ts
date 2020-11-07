@@ -8,7 +8,7 @@ export default {
   DB_DIALECT: process.env.DB_DIALECT || "mongo",
   DB_HOST:
     process.env.DB_HOST ||
-    "mongodb+srv://stas-diubko:Stas0311@cluster0-0dlp2.mongodb.net/blog?retryWrites=true&w=majority",
+    "mongodb+srv://stas-diubko:Stas0311@cluster0-0dlp2.mongodb.net/data-base-1?retryWrites=true&w=majority",
   DB_NAME: process.env.DB_NAME || "example_db",
   DB_PASSWORD: process.env.DB_PASSWORD || "db-password",
   DB_PORT: process.env.DB_PORT || "27017",

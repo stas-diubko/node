@@ -1,0 +1,5 @@
+{
+  message: 'login user not validate, error: instance requires property "password", user = {"email":"test@email.com"}',
+  level: 'error',
+  timestamp: '2020-11-07T19:48:41.693Z'
+}

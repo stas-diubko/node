@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+require("dotenv").config();
 
 export const generateAccessToken = (userId: string, email: string, expiresIn?:string) => {
     const payload = {
@@ -8,6 +9,7 @@ export const generateAccessToken = (userId: string, email: string, expiresIn?:st
     };
 
     const options = { expiresIn: expiresIn || "6m" };
+    const secret =  process.env.SECRET_KEY || '';
 
-    return jwt.sign(payload, process.env.SECRET_KEY, options);
+    return jwt.sign(payload, secret, options);
 };

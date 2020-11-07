@@ -1,7 +1,7 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 import CONFIG from "./config";
 
-mongoose.set("useCreateIndex", true);
+// mongoose.set("useCreateIndex", true);
 
 // Connecting to the database
 export default (async () => {
