@@ -1,25 +1,31 @@
 import { Schema, model, Document } from "mongoose";
 import { User } from "./api";
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+  {
     firstName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     lastName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     password: {
-        type: String,
-        required: true
-    }
-});
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    useNestedStrict: true,
+  }
+);
 
-interface UserModel extends User, Document {};
+interface UserModel extends User, Document {}
 
 export default model<UserModel>("User", userSchema);

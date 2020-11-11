@@ -4,6 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import authRoutes from "./features/auth/auth.routes";
+import projectRoutes from "./features/project/project.routes";
 import errorHandler from './helpers/errorHandler';
 
 class App {
@@ -26,6 +27,7 @@ class App {
 
   private setRoutes(): void {
     this.express.use("/api/auth", authRoutes);
+    this.express.use("/api/project", projectRoutes);
   }
 
   private catchErrors(): void {

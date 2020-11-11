@@ -1,0 +1,24 @@
+@api=http://localhost:3000/api
+
+
+###
+# @name auth
+POST {{api}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@email.com",
+    "password": "0000"
+}
+
+
+### Create project
+# @name createProject
+POST {{api}}/project/create
+# Authorization: Bearer {{auth.response.body.token}}
+Content-Type: application/json
+
+{
+    "name": "test name",
+    "description": "test description"
+}
