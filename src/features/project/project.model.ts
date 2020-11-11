@@ -11,6 +11,9 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
+    // _id: {
+    //     type: String,
+    // }
   },
   {
     timestamps: true,

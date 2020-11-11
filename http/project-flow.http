@@ -19,6 +19,13 @@ POST {{api}}/project/create
 Content-Type: application/json
 
 {
-    "name": "test name",
-    "description": "test description"
+    "project": {
+        "name": "test name2",
+        "description": "test description"
+    },
+    "feature":  {
+        "title": "test title of feature2",
+        "level": "1.1"
+    }
+    
 }

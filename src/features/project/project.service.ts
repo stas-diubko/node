@@ -1,10 +1,15 @@
+import { Document } from "mongoose";
+
 import { validate } from "../../helpers";
 import logger from "../utils/logger";
 import { ProjectCreate } from "./api";
-import * as repository from "./project.repository";
-import ProjectSchema from "./schemas/CreateProjectScema.json";
+import * as projectRepository from "./project.repository";
+import * as featureRepository from "../feature/feature.repository";
 
-export const create = async (project: ProjectCreate) => {
+import ProjectSchema from "./schemas/CreateProjectScema.json";
+import { FeatureView } from "../feature/api";
+
+export const create = async (project: ProjectCreate, feature: FeatureView) => {
   const validateObject = validate.toValidate(project, ProjectSchema);
 
   if (!validateObject.valid) {
@@ -16,7 +21,7 @@ export const create = async (project: ProjectCreate) => {
     return { status: 400, message: { error: validateObject.errors } };
   }
 
-  const existingProject = await repository.findProjectByName(project.name);
+  const existingProject = await projectRepository.findProjectByName(project.name);
 
   if (existingProject) {
     logger.error(`project with this name exists!`);
@@ -26,6 +31,11 @@ export const create = async (project: ProjectCreate) => {
     };
   }
 
-  const result = await repository.createProject(project);
+  const newProject: any = await projectRepository.createProject(project);
+ 
+    feature.project = newProject._id ? newProject._id : ''
+  
+  const result = await featureRepository.createFeature(feature)
+
   return result;
 };
