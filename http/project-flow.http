@@ -20,11 +20,11 @@ Content-Type: application/json
 
 {
     "project": {
-        "name": "test name2",
+        "name": "test name3",
         "description": "test description"
     },
     "feature":  {
-        "title": "test title of feature2",
+        "title": "test title of feature3",
         "level": "1.1"
     }
     
