@@ -1,5 +1,3 @@
-import { Document } from "mongoose";
-
 import { validate } from "../../helpers";
 import logger from "../utils/logger";
 import { ProjectCreate } from "./api";
