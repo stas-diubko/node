@@ -26,6 +26,6 @@ const userSchema = new Schema(
   }
 );
 
-interface UserModel extends User, Document {}
+export interface UserModel extends User, Document {}
 
 export default model<UserModel>("User", userSchema);

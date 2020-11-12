@@ -10,10 +10,7 @@ const projectSchema = new Schema(
     description: {
       type: String,
       required: true,
-    },
-    // _id: {
-    //     type: String,
-    // }
+    }
   },
   {
     timestamps: true,
@@ -21,6 +18,6 @@ const projectSchema = new Schema(
   }
 );
 
-interface ProjectModel extends ProjectCreate, Document {};
+export interface ProjectModel extends ProjectCreate, Document {};
 
 export default model<ProjectModel>("Project", projectSchema);

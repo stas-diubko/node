@@ -1,7 +1,7 @@
 @api=http://localhost:3000/api
 
 
-###
+### Login
 # @name auth
 POST {{api}}/auth/login
 Content-Type: application/json

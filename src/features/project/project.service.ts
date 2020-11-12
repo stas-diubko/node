@@ -8,6 +8,7 @@ import * as featureRepository from "../feature/feature.repository";
 
 import ProjectSchema from "./schemas/CreateProjectScema.json";
 import { FeatureView } from "../feature/api";
+import { ProjectModel } from "./project.model";
 
 export const create = async (project: ProjectCreate, feature: FeatureView) => {
   const validateObject = validate.toValidate(project, ProjectSchema);
@@ -21,7 +22,9 @@ export const create = async (project: ProjectCreate, feature: FeatureView) => {
     return { status: 400, message: { error: validateObject.errors } };
   }
 
-  const existingProject = await projectRepository.findProjectByName(project.name);
+  const existingProject = await projectRepository.findProjectByName(
+    project.name
+  );
 
   if (existingProject) {
     logger.error(`project with this name exists!`);
@@ -31,11 +34,13 @@ export const create = async (project: ProjectCreate, feature: FeatureView) => {
     };
   }
 
-  const newProject: any = await projectRepository.createProject(project);
- 
-    feature.project = newProject._id ? newProject._id : ''
-  
-  const result = await featureRepository.createFeature(feature)
+  const newProject = (await projectRepository.createProject(
+    project
+  )) as ProjectModel;
+
+  feature.project = newProject._id;
+
+  const result = await featureRepository.createFeature(feature);
 
   return result;
 };
