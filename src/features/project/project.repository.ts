@@ -1,6 +1,7 @@
 import Project from "./project.model";
 import { ProjectCreate } from "./api";
 import logger from "../utils/logger";
+import { AppError } from "../../helpers/app-errors";
 
 export const createProject = async (project: ProjectCreate) => {
   try {
@@ -8,7 +9,7 @@ export const createProject = async (project: ProjectCreate) => {
     return { status: 200, message: { data: "Project created!" } };
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return { status: 500, message: { error } };
+    return AppError.serverError(error.toString());
   }
 };
 
@@ -19,6 +20,6 @@ export const findProjectByName = async (name: string) => {
     });
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return { status: 500, message: { error } };
+    return AppError.serverError(error.toString());
   }
 };

@@ -6,5 +6,7 @@ export const create = (req: Request, res: Response) => {
   services
     .create(project)
     .then((result) => res.status(result["status"]).send(result["message"]))
-    .catch((err) => res.send(err));
+    .catch((err) => {
+      res.send(err);
+    });
 };

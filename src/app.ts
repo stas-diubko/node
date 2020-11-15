@@ -3,10 +3,8 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import authRoutes from "./features/auth/auth.routes";
-import projectRoutes from "./features/project/project.routes";
 
-import errorHandler from './helpers/errorHandler';
+const router = require("./app-routes");
 
 class App {
   public express: express.Application;
@@ -15,7 +13,6 @@ class App {
     this.express = express();
     this.setMiddlewares();
     this.setRoutes();
-    this.catchErrors();
   }
 
   private setMiddlewares(): void {
@@ -27,16 +24,8 @@ class App {
   }
 
   private setRoutes(): void {
-    this.express.use("/api/auth", authRoutes);
-    this.express.use("/api/project", projectRoutes);
+    this.express.use("/api", router);
   }
-
-  private catchErrors(): void {
-    this.express.use(errorHandler.notFound);
-    this.express.use(errorHandler.internalServerError);
-    this.express.use(errorHandler.badRequest);
-  }
-
 }
 
 export default new App().express;

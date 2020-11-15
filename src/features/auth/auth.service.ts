@@ -5,12 +5,13 @@ import logger from "../utils/logger";
 import { UserModel } from "../user/user.model";
 import { token } from "../../helpers";
 import User from "../user/user.model";
+import { AppError } from "../../helpers/app-errors";
 
 export const login = async (user: UserLogin) => {
   const userInDb = (await repository.getUserByEmail(user)) as UserModel;
 
   if (!userInDb) {
-    return { status: 404, message: { error: "User not found" } };
+    return AppError.notFound("User not found");
   }
 
   const isPasswordMatching = await bcrypt.compare(
@@ -24,14 +25,14 @@ export const login = async (user: UserLogin) => {
   }
 
   logger.error(`Invalid password of user - ${userInDb._id}`);
-  return { status: 400, message: { error: "Invalid password!" } };
+  return AppError.badRequest("Invalid password!");
 };
 
 export const register = async (user: UserCreate) => {
   const checkUser = await repository.checkUserByEmail(user);
 
   if (checkUser) {
-    return { status: 404, message: { error: "email already exists!" } };
+    return AppError.badRequest("Email already exists!");
   }
 
   let createUser = new User(user);
