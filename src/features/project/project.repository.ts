@@ -3,7 +3,8 @@ import { ProjectCreate } from "./api";
 
 export const createProject = async (project: ProjectCreate) => {
   try {
-    return await Project.create(project);
+    await Project.create(project);
+    return { status: 200, message: { data: "Project created!" } };
   } catch (error) {
     return { status: 400, message: { error } };
   }

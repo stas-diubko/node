@@ -20,12 +20,19 @@ Content-Type: application/json
 
 {
     "project": {
-        "name": "test name3",
-        "description": "test description"
-    },
-    "feature":  {
-        "title": "test title of feature3",
-        "level": "1.1"
+        "name": "test name2",
+        "description": "test description",
+        "features": [
+            {
+                "title": "test title of feature3",
+                "level": "1.1",
+                "estimate": 5
+            },
+            {
+                "title": "test title of feature3",
+                "level": "1.2",
+                "estimate": 5
+            }
+        ]
     }
-    
 }

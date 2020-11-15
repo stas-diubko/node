@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import authRoutes from "./features/auth/auth.routes";
 import projectRoutes from "./features/project/project.routes";
+
 import errorHandler from './helpers/errorHandler';
 
 class App {
@@ -33,9 +34,9 @@ class App {
   private catchErrors(): void {
     this.express.use(errorHandler.notFound);
     this.express.use(errorHandler.internalServerError);
+    this.express.use(errorHandler.badRequest);
   }
 
 }
-
 
 export default new App().express;

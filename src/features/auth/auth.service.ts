@@ -1,7 +1,4 @@
 import bcrypt from "bcrypt";
-import { validate } from "../../helpers";
-import LoginSchema from "./schemas/LoginSchema.json";
-import RegisterSchema from "./schemas/RegisterSchema.json";
 import * as repository from "./auth.repository";
 import { UserCreate, UserLogin } from "./api";
 import logger from "../utils/logger";
@@ -10,17 +7,6 @@ import { token } from "../../helpers";
 import User from "../user/user.model";
 
 export const login = async (user: UserLogin) => {
-  const validateObject = validate.toValidate(user, LoginSchema);
-
-  if (!validateObject.valid) {
-    logger.error(
-      `login data is not valid, error: ${
-        validateObject.errors
-      }, user = ${JSON.stringify(user)}`
-    );
-    return { status: 400, message: { error: validateObject.errors } };
-  }
-
   const userInDb = (await repository.getUserByEmail(user)) as UserModel;
 
   if (!userInDb) {
@@ -42,17 +28,6 @@ export const login = async (user: UserLogin) => {
 };
 
 export const register = async (user: UserCreate) => {
-  const validateObject = validate.toValidate(user, RegisterSchema);
-
-  if (!validateObject.valid) {
-    logger.error(
-      `registration data is not valid, error: ${
-        validateObject.errors
-      }, user = ${JSON.stringify(user)}`
-    );
-    return { status: 400, message: { error: validateObject.errors } };
-  }
-
   const checkUser = await repository.checkUserByEmail(user);
 
   if (checkUser) {
