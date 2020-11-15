@@ -1,4 +1,4 @@
-import Project from "./project.model";
+import Project, { ProjectModel } from "./project.model";
 import { ProjectCreate } from "./api";
 import logger from "../utils/logger";
 import { AppError } from "../../helpers/app-errors";
@@ -21,5 +21,22 @@ export const findProjectByName = async (name: string) => {
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
     return AppError.serverError(error.toString());
+  }
+};
+
+export const findProjectById = async (id: string) => {
+  try {
+    return await Project.findById(id);
+  } catch (error) {
+    logger.error(`Internal server error - ${error.toString()}`);
+    return AppError.serverError(error.toString());
+  }
+};
+
+export const updateProject = async (project: ProjectModel) => {
+  try {
+    return await Project.updateOne({ _id: project._id }, project);
+  } catch (error) {
+    throw new Error(error);
   }
 };

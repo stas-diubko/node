@@ -34,3 +34,26 @@ Content-Type: application/json
         }
     ]
 }
+
+### Update project
+# @name updateProject
+PUT {{api}}/project/update
+Content-Type: application/json
+
+{   
+    "_id": "5fb03598bee8f12c84f9d8bb",
+    "name": "test updated 15",
+    "description": "test description 15",
+    "features": [
+        {
+            "title": "test title",
+            "level": "1",
+            "estimate": 12
+        },
+        {
+            "title": "test title of feature5",
+            "level": "1",
+            "estimate": 12
+        }
+    ]
+}

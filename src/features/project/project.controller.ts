@@ -10,3 +10,13 @@ export const create = (req: Request, res: Response) => {
       res.send(err);
     });
 };
+
+export const update = (req: Request, res: Response) => {
+  const project = req.body;
+  services
+    .update(project)
+    .then((result) => res.status(result["status"]).send(result["message"]))
+    .catch((err) => {
+      res.send(err);
+    });
+};

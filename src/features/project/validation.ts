@@ -11,3 +11,9 @@ export const createProgectSchema = yup.object().shape({
   description: yup.string().required(),
   features: yup.array(featureSchema)
 });
+
+export const updateProgectSchema = yup.object().shape({
+  name: yup.string(),
+  description: yup.string(),
+  features: yup.array(featureSchema)
+});
