@@ -9,7 +9,7 @@ export const createProject = async (project: ProjectCreate) => {
     return { status: 200, message: { data: "Project created!" } };
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
 
@@ -20,7 +20,7 @@ export const findProjectByName = async (name: string) => {
     });
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
 
@@ -29,7 +29,7 @@ export const findProjectById = async (id: string) => {
     return await Project.findById(id);
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
 
@@ -37,6 +37,6 @@ export const updateProject = async (project: ProjectModel) => {
   try {
     return await Project.updateOne({ _id: project._id }, project);
   } catch (error) {
-    throw new Error(error);
+    throw new AppError(500, error.toString());
   }
 };

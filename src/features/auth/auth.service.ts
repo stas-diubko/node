@@ -11,7 +11,7 @@ export const login = async (user: UserLogin) => {
   const userInDb = (await repository.getUserByEmail(user)) as UserModel;
 
   if (!userInDb) {
-    return AppError.notFound("User not found");
+    throw new AppError(404, "User not found");
   }
 
   const isPasswordMatching = await bcrypt.compare(
@@ -25,14 +25,14 @@ export const login = async (user: UserLogin) => {
   }
 
   logger.error(`Invalid password of user - ${userInDb._id}`);
-  return AppError.badRequest("Invalid password!");
+  throw new AppError(400, "Invalid password of user");
 };
 
 export const register = async (user: UserCreate) => {
   const checkUser = await repository.checkUserByEmail(user);
 
   if (checkUser) {
-    return AppError.badRequest("Email already exists!");
+    throw new AppError(400, "Email already exists!");
   }
 
   let createUser = new User(user);

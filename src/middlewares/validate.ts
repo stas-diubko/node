@@ -10,7 +10,7 @@ export const validate = (model: yup.Schema<any>) => {
       next();
     } else {
       logger.error("Request body is not valid!");
-      return AppError.badRequest("Request body is not valid!");
+      throw new AppError(500, "Request body is not valid!");
     }
   };
 };

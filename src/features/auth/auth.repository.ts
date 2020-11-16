@@ -9,7 +9,7 @@ export const createUser = async (user: UserCreate) => {
     return { status: 200, message: { data: "Create user" } };
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
 
@@ -18,7 +18,7 @@ export const getUserByEmail = async (user: UserLogin) => {
     return await User.findOne({ email: user.email });
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
 
@@ -27,6 +27,6 @@ export const checkUserByEmail = async (user: UserLogin) => {
     return await User.countDocuments({ email: user.email });
   } catch (error) {
     logger.error(`Internal server error - ${error.toString()}`);
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };

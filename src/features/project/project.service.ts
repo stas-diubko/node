@@ -11,7 +11,7 @@ export const create = async (project: ProjectCreate) => {
 
   if (existingProject) {
     logger.error(`project with this name exists!`);
-    return AppError.badRequest("project with this name exists!");
+    throw new AppError(400, "project with this name exists!");
   }
 
   const result = await projectRepository.createProject(project);
@@ -25,6 +25,6 @@ export const update = async (project: ProjectModel) => {
     return { status: 200, message: { data: "Project updated!" } };
   } catch (error) {
     logger.error(error.toString());
-    return AppError.serverError(error.toString());
+    throw new AppError(500, error.toString());
   }
 };
