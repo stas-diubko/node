@@ -14,44 +14,49 @@ Content-Type: application/json
 
 ### Create project
 # @name createProject
-POST {{api}}/project/create
+POST {{api}}/project
 # Authorization: Bearer {{auth.response.body.token}}
 Content-Type: application/json
 
 {
-    "name": "test name7",
-    "description": "test description",
+    "name": "test name8",
+    "description": "test description 8",
     "features": [
         {
-            "title": "test title of feature5",
+            "title": "test title of feature8",
             "level": "1.1",
             "estimate": 5
         },
         {
-            "title": "test title of feature5",
+            "title": "test title of feature8",
             "level": "1.2",
             "estimate": 5
+        },
+        {
+            "title": "test title of feature8",
+            "level": "1.2.1",
+            "estimate": 4
         }
     ]
 }
 
 ### Update project
 # @name updateProject
-PUT {{api}}/project/update
+PUT {{api}}/project
 Content-Type: application/json
 
 {   
-    "_id": "5fb03598bee8f12c84f9d8bb",
-    "name": "test updated 15",
-    "description": "test description 15",
+    "_id": "5fb2ed408b72d9014ca08521",
+    "name": "test updated qwerty",
+    "description": "test description 15qwerty",
     "features": [
         {
-            "title": "test title",
+            "title": "test titleqwerty",
             "level": "1",
             "estimate": 12
         },
         {
-            "title": "test title of feature5",
+            "title": "test title of feature5 qwerty",
             "level": "1",
             "estimate": 12
         }

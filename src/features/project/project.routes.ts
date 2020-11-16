@@ -6,7 +6,7 @@ import { update } from "./project.controller";
 
 const router = Router();
 
-router.post("/create", validate(createProgectSchema), create);
-router.put("/update", validate(updateProgectSchema), update);
+router.post("/", validate(createProgectSchema), create);
+router.put("/", validate(updateProgectSchema), update);
 
 export default router;

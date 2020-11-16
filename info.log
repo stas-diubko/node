@@ -3,3 +3,13 @@
   level: 'error',
   timestamp: '2020-11-07T19:48:41.693Z'
 }
+{
+  message: 'project with this name exists!',
+  level: 'error',
+  timestamp: '2020-11-16T21:20:28.162Z'
+}
+{
+  message: 'Something was bad for POST @ /api/project.',
+  level: 'error',
+  timestamp: '2020-11-16T21:20:28.167Z'
+}
